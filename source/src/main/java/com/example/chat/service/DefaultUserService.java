@@ -1,6 +1,7 @@
-package com.example.service;
+package com.example.chat.service;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +30,10 @@ public class DefaultUserService implements UserService {
     public User createUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByName("ROLE_USER");
-        user.addRoles(Arrays.asList(userRole));
+        Set<Role> roles = new HashSet<>();
+        roles.add(userRole);
+        user.setRoles(roles);
+
         return userRepository.save(user);
     }
 }

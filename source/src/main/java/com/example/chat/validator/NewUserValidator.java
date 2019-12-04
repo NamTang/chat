@@ -1,4 +1,4 @@
-package com.example.validator;
+package com.example.chat.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class NewUserValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         User newUser = (User) target;
-        if (userRepository.existsById(newUser.getUsername())) {
+        if (userRepository.existsById(newUser.getEmail())) {
             errors.rejectValue("username", "new.account.username.already.exists");
         }
     }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.chat.entity.User;
-import com.example.service.UserService;
-import com.example.validator.NewUserValidator;
+import com.example.chat.service.UserService;
+import com.example.chat.validator.NewUserValidator;
 
 @Controller
 public class AuthenticationController {

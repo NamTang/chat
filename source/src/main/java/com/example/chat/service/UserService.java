@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.chat.service;
 
 import com.example.chat.entity.User;
 

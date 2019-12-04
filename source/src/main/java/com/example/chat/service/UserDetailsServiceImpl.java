@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.chat.service;
 
 import java.util.Optional;
 import java.util.Set;
@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             Set<SimpleGrantedAuthority> grantedAuthorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
                     .collect(Collectors.toSet());
 
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+            return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
         }
     }
 }

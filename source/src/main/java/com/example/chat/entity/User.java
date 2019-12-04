@@ -1,9 +1,9 @@
 package com.example.chat.entity;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -11,60 +11,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
-    @Size(min = 5, max = 15)
-    private String username;
-
-    @Size(min = 5)
-    private String password;
-
-    private String name;
-
     private String email;
-
-    @ManyToMany(fetch = FetchType.EAGER)
+    private String phone;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private long isActive;
+    private long isReported;
+    private long isBlocked;
+    private String preferences;
+    private java.sql.Timestamp createdAt;
+    private java.sql.Timestamp updatedAt;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User() {
-
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public User(String username, String password, String name, String email) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.email = email;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -75,11 +57,84 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public String getPassword() {
+        return password;
     }
 
-    public void addRoles(Collection<Role> roles) {
-        this.roles.addAll(roles);
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public long getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(long isActive) {
+        this.isActive = isActive;
+    }
+
+    public long getIsReported() {
+        return isReported;
+    }
+
+    public void setIsReported(long isReported) {
+        this.isReported = isReported;
+    }
+
+    public long getIsBlocked() {
+        return isBlocked;
+    }
+
+    public void setIsBlocked(long isBlocked) {
+        this.isBlocked = isBlocked;
+    }
+
+    public String getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(String preferences) {
+        this.preferences = preferences;
+    }
+
+    public java.sql.Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(java.sql.Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public java.sql.Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(java.sql.Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
 }
