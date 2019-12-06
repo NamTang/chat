@@ -1,9 +1,10 @@
 package com.example.chat.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
 
 public class UserContactPK implements Serializable {
     private long userId;
@@ -31,11 +32,12 @@ public class UserContactPK implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         UserContactPK that = (UserContactPK) o;
-        return userId == that.userId &&
-                contactId == that.contactId;
+        return userId == that.userId && contactId == that.contactId;
     }
 
     @Override

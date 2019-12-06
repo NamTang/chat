@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.chat.entity.Role;
-import com.example.chat.entity.User;
+import com.example.chat.entity.Users;
 import com.example.chat.repository.RoleRepository;
 import com.example.chat.repository.UserRepository;
 
@@ -27,7 +27,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     @Transactional
-    public User createUser(User user) {
+    public Users createUser(Users user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByName("ROLE_USER");
         Set<Role> roles = new HashSet<>();

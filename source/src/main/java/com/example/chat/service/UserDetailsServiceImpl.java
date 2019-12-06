@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.chat.entity.User;
+import com.example.chat.entity.Users;
 import com.example.chat.repository.UserRepository;
 
 @Service
@@ -22,12 +22,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> u = userRepository.findById(username);
+        Optional<Users> u = userRepository.findById(username);
 
         if (!u.isPresent()) {
             throw new UsernameNotFoundException("User not found");
         } else {
-            User user = u.get();
+            Users user = u.get();
             Set<SimpleGrantedAuthority> grantedAuthorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
                     .collect(Collectors.toSet());
 

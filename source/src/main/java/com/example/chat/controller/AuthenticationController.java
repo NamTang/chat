@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.chat.entity.User;
+import com.example.chat.entity.Users;
 import com.example.chat.service.UserService;
 import com.example.chat.validator.NewUserValidator;
 
@@ -36,12 +36,12 @@ public class AuthenticationController {
 
     @GetMapping("/new-account")
     public String newAccount(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new Users());
         return "new-account";
     }
 
     @PostMapping(path = "/new-account")
-    public String createAccount(@Valid User user, BindingResult bindingResult) {
+    public String createAccount(@Valid Users user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "new-account";
         }
